@@ -6,7 +6,8 @@ import axios from 'axios';
 const COUPONS_FILE = './data/coupons.json';
 const USERS_FILE = './data/users.json';
 const SUGGESTIONS_FILE = './data/suggestions.json';
-const EMAIL_API = 'http://localhost:3001/coupon';
+// const EMAIL_API = 'http://localhost:3001/coupon';
+const EMAIL_API = 'https://email-servo.herokuapp.com/coupon';
 
 // Helper function to send emails
 async function sendEmail(email: string, content: string) {
