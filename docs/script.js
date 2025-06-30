@@ -1,7 +1,7 @@
 // Global variables
 let currentUser = null;
 // const API_BASE = 'http://localhost:3000/api';
-const API_BASE = 'https://coupon-book-codemavericks-4897424fc6ee.herokuapp.com/';
+const API_BASE = 'https://coupon-book-codemavericks-4897424fc6ee.herokuapp.com';
 
 let currentCouponId = null;
 
