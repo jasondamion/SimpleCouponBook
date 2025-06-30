@@ -240,14 +240,21 @@ export function scheduleCoupon(couponId: string, date: Date): Coupon | null {
     return coupon;
 }
 
-export function listCoupons(userId?: string): Coupon[] {
-  const coupons = readCoupons();
-  
-  if (userId) {
-    return coupons.filter(coupon => coupon.userId === userId);
-  }
-  
-  return coupons;
+export function listCoupons(userId?: string, isAdmin: boolean = false): Coupon[] {
+    const coupons = readCoupons();
+    
+    // If not admin, only return coupons for the specific user
+    if (!isAdmin && userId) {
+        return coupons.filter(coupon => coupon.userId === userId);
+    }
+    
+    // If admin and userId provided, filter by that user
+    if (isAdmin && userId) {
+        return coupons.filter(coupon => coupon.userId === userId);
+    }
+    
+    // If admin and no userId, return all coupons
+    return coupons;
 }
 
 // User Functions

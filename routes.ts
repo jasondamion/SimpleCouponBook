@@ -24,8 +24,9 @@ router.post('/coupons', (req: Request, res: Response) => {
 // GET /coupons - List all coupons or filter by userId
 router.get('/coupons', (req: Request, res: Response) => {
   try {
-    const { userId } = req.query;
-    const coupons = functions.listCoupons(userId as string);
+    const { userId, isAdmin } = req.query;
+    const isAdminBool = isAdmin === 'true';
+    const coupons = functions.listCoupons(userId as string, isAdminBool);
     return res.json(coupons);
   } catch (error) {
     return res.status(500).json({ error: 'Failed to retrieve coupons' });

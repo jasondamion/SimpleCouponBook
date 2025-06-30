@@ -93,7 +93,17 @@ function showMainApp() {
 
 async function loadCoupons() {
     try {
-        const response = await fetch(`${API_BASE}/coupons`);
+        // Build query parameters
+        const params = new URLSearchParams({
+            isAdmin: currentUser.isAdmin
+        });
+        
+        // If not admin, only load their own coupons
+        if (!currentUser.isAdmin) {
+            params.append('userId', currentUser.id);
+        }
+        
+        const response = await fetch(`${API_BASE}/coupons?${params}`);
         const allCoupons = await response.json();
         
         // Get search filter value
