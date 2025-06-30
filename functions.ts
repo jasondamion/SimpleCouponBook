@@ -2,12 +2,31 @@ import * as fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 import { Coupon, User, Suggestion } from './model';
 import axios from 'axios';
+import * as path from 'path';
 
-const COUPONS_FILE = './data/coupons.json';
-const USERS_FILE = './data/users.json';
-const SUGGESTIONS_FILE = './data/suggestions.json';
+const DATA_DIR = './data';
+const DEFAULT_DATA_DIR = './data/default';
+const COUPONS_FILE = path.join(DATA_DIR, 'coupons.json');
+const USERS_FILE = path.join(DATA_DIR, 'users.json');
+const SUGGESTIONS_FILE = path.join(DATA_DIR, 'suggestions.json');
 // const EMAIL_API = 'http://localhost:3001/coupon';
 const EMAIL_API = 'https://email-servo.herokuapp.com/coupon';
+
+// Helper function to ensure data directory exists
+function ensureDataDirectory() {
+    if (!fs.existsSync(DATA_DIR)) {
+        fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+}
+
+// Helper function to initialize a data file from default if it doesn't exist
+function initializeDataFile(filename: string) {
+    const defaultFile = path.join(DEFAULT_DATA_DIR, path.basename(filename));
+    if (!fs.existsSync(filename) && fs.existsSync(defaultFile)) {
+        ensureDataDirectory();
+        fs.copyFileSync(defaultFile, filename);
+    }
+}
 
 // Helper function to send emails
 async function sendEmail(email: string, content: string) {
@@ -33,12 +52,13 @@ function formatDate(date: Date): string {
 
 // Helper functions for file operations
 function readCoupons(): Coupon[] {
-  try {
-    const data = fs.readFileSync(COUPONS_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    return [];
-  }
+    initializeDataFile(COUPONS_FILE);
+    try {
+        const data = fs.readFileSync(COUPONS_FILE, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        return [];
+    }
 }
 
 function writeCoupons(coupons: Coupon[]): void {
@@ -46,12 +66,13 @@ function writeCoupons(coupons: Coupon[]): void {
 }
 
 function readUsers(): User[] {
-  try {
-    const data = fs.readFileSync(USERS_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    return [];
-  }
+    initializeDataFile(USERS_FILE);
+    try {
+        const data = fs.readFileSync(USERS_FILE, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        return [];
+    }
 }
 
 function writeUsers(users: User[]): void {
@@ -59,12 +80,13 @@ function writeUsers(users: User[]): void {
 }
 
 function readSuggestions(): Suggestion[] {
-  try {
-    const data = fs.readFileSync(SUGGESTIONS_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    return [];
-  }
+    initializeDataFile(SUGGESTIONS_FILE);
+    try {
+        const data = fs.readFileSync(SUGGESTIONS_FILE, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        return [];
+    }
 }
 
 function writeSuggestions(suggestions: Suggestion[]): void {
