@@ -4,8 +4,14 @@ import { Coupon, User, Suggestion } from './model';
 import axios from 'axios';
 import * as path from 'path';
 
-const DATA_DIR = './data';
+// Check if we're in production
+const isProd = process.env.NODE_ENV === 'production';
+
+// Base directories
+const DATA_DIR = isProd ? '/app/data' : './data';
 const DEFAULT_DATA_DIR = './data/default';
+
+// File paths
 const COUPONS_FILE = path.join(DATA_DIR, 'coupons.json');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
 const SUGGESTIONS_FILE = path.join(DATA_DIR, 'suggestions.json');
@@ -21,10 +27,40 @@ function ensureDataDirectory() {
 
 // Helper function to initialize a data file from default if it doesn't exist
 function initializeDataFile(filename: string) {
-    const defaultFile = path.join(DEFAULT_DATA_DIR, path.basename(filename));
-    if (!fs.existsSync(filename) && fs.existsSync(defaultFile)) {
-        ensureDataDirectory();
-        fs.copyFileSync(defaultFile, filename);
+    ensureDataDirectory();
+    
+    if (!fs.existsSync(filename)) {
+        const defaultFile = path.join(DEFAULT_DATA_DIR, path.basename(filename));
+        if (fs.existsSync(defaultFile)) {
+            // In production, only copy if the file doesn't exist
+            if (isProd) {
+                if (!fs.existsSync(filename)) {
+                    fs.copyFileSync(defaultFile, filename);
+                }
+            } else {
+                fs.copyFileSync(defaultFile, filename);
+            }
+        } else {
+            // If no default file exists, create an empty array
+            fs.writeFileSync(filename, '[]', 'utf8');
+        }
+    }
+}
+
+// Helper function to safely write to files in production
+function safeWriteFile(filename: string, data: any) {
+    const tempFile = `${filename}.tmp`;
+    try {
+        // Write to temporary file first
+        fs.writeFileSync(tempFile, JSON.stringify(data, null, 2));
+        // Then rename it to the actual file (atomic operation)
+        fs.renameSync(tempFile, filename);
+    } catch (error) {
+        // Clean up temp file if it exists
+        if (fs.existsSync(tempFile)) {
+            fs.unlinkSync(tempFile);
+        }
+        throw error;
     }
 }
 
@@ -62,7 +98,7 @@ function readCoupons(): Coupon[] {
 }
 
 function writeCoupons(coupons: Coupon[]): void {
-  fs.writeFileSync(COUPONS_FILE, JSON.stringify(coupons, null, 2));
+    safeWriteFile(COUPONS_FILE, coupons);
 }
 
 function readUsers(): User[] {
@@ -76,7 +112,7 @@ function readUsers(): User[] {
 }
 
 function writeUsers(users: User[]): void {
-  fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+    safeWriteFile(USERS_FILE, users);
 }
 
 function readSuggestions(): Suggestion[] {
@@ -90,7 +126,7 @@ function readSuggestions(): Suggestion[] {
 }
 
 function writeSuggestions(suggestions: Suggestion[]): void {
-  fs.writeFileSync(SUGGESTIONS_FILE, JSON.stringify(suggestions, null, 2));
+    safeWriteFile(SUGGESTIONS_FILE, suggestions);
 }
 
 // Coupon Functions
