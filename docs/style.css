@@ -58,24 +58,38 @@
 
 /* Header button styling */
 .app-header .btn {
-    margin: 0 5px;
-}
-
-.app-header .btn-group {
-    margin: 0 10px;
-}
-
-/* Make suggestions button specific styling */
-#suggestBtn {
-    margin-right: 15px;
-}
-
-/* Ensure buttons have consistent height */
-.app-header .btn {
-    height: 38px;
+    min-width: 140px;
+    padding: 8px 16px;
+    margin: 4px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
+}
+
+.app-header .btn i {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+/* User info responsive styling */
+#userInfo {
+    min-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .app-header .btn {
+        width: calc(50% - 8px); /* Two buttons per row on mobile, accounting for margins */
+        margin: 4px;
+    }
+    
+    #userInfo {
+        width: 100%;
+        margin-top: 10px;
+        padding: 8px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
 }
 
 /* Floating Action Button (FAB) */

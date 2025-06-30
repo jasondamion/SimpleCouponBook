@@ -40,27 +40,27 @@
         <header class="app-header py-3">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-4">
+                    <div class="col-md-4 mb-3 mb-md-0">
                         <h4 class="mb-0">Jason Nelson - Coupon Book</h4>
                     </div>
-                    <div class="col-md-8 text-end">
-                        <div class="d-flex justify-content-end align-items-center">
-                            <button id="suggestBtn" class="btn btn-outline-light" onclick="showSuggestionModal()">
-                                <i class="fas fa-lightbulb"></i> Make Suggestion
+                    <div class="col-md-8">
+                        <div class="d-flex flex-wrap justify-content-center justify-content-md-end align-items-center gap-2">
+                            <button id="suggestBtn" class="btn btn-outline-light px-3" onclick="showSuggestionModal()">
+                                <i class="fas fa-lightbulb me-2"></i> Make Suggestion
                             </button>
-                            <button id="addCouponBtn" class="btn btn-success d-none" onclick="showAddCouponModal()">
-                                <i class="fas fa-plus"></i> Add Coupon
+                            <button id="addCouponBtn" class="btn btn-success px-3 d-none" onclick="showAddCouponModal()">
+                                <i class="fas fa-plus me-2"></i> Add Coupon
                             </button>
-                            <button id="viewSuggestionsBtn" class="btn btn-info d-none" onclick="loadSuggestions()">
-                                <i class="fas fa-list"></i> View Suggestions
+                            <button id="viewSuggestionsBtn" class="btn btn-info px-3 d-none" onclick="loadSuggestions()">
+                                <i class="fas fa-list me-2"></i> View Suggestions
                             </button>
-                            <button class="btn btn-outline-light" onclick="loadUsers()">
-                                <i class="fas fa-users"></i> View Users
+                            <button class="btn btn-outline-light px-3" onclick="loadUsers()">
+                                <i class="fas fa-users me-2"></i> View Users
                             </button>
-                            <button class="btn btn-outline-light" onclick="logout()">
-                                <i class="fas fa-sign-out-alt"></i> Logout
+                            <button class="btn btn-outline-light px-3" onclick="logout()">
+                                <i class="fas fa-sign-out-alt me-2"></i> Logout
                             </button>
-                            <span id="userInfo" class="ms-3 text-light"></span>
+                            <span id="userInfo" class="ms-md-3 mt-2 mt-md-0 text-light text-center text-md-start"></span>
                         </div>
                     </div>
                 </div>
