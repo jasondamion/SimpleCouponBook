@@ -1,0 +1,18 @@
+[
+  {
+    "id": "101c1cf7-c9f4-4a54-9f0b-316be7db927b",
+    "firstName": "Jason",
+    "lastName": "Nelson",
+    "email": "jasonnelson11@gmail.com",
+    "password": "nelson",
+    "isAdmin": true
+  },
+  {
+    "id": "2ab3d49f-fb02-400b-bbe0-adbe7efc6f3c",
+    "firstName": "Madison",
+    "lastName": "Mcintosh",
+    "email": "maddymac@gmail.com",
+    "password": "mamamadison",
+    "isAdmin": false
+  }
+]

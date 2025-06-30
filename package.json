@@ -1,0 +1,33 @@
+{
+  "name": "simple-coupon-book",
+  "version": "1.0.0",
+  "description": "A simple coupon book management system",
+  "main": "server.ts",
+  "scripts": {
+    "start": "ts-node server.ts",
+    "dev": "ts-node-dev --respawn server.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "coupon",
+    "book",
+    "management"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
+    "@types/uuid": "^9.0.7",
+    "axios": "^1.10.0",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.3",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0"
+  }
+}

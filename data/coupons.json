@@ -1,0 +1,11 @@
+[
+  {
+    "id": "301da508-8b60-41ec-9075-fd96fddbcaa5",
+    "userId": "101c1cf7-c9f4-4a54-9f0b-316be7db927b",
+    "adminId": "101c1cf7-c9f4-4a54-9f0b-316be7db927b",
+    "title": "Coupon Creation Test",
+    "content": "Coupon has just been createdddd",
+    "isActive": false,
+    "scheduledDate": null
+  }
+]

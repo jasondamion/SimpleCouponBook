@@ -1,0 +1,101 @@
+.coupon-card {
+    border-left: 4px solid #007bff;
+    transition: all 0.3s ease;
+}
+
+.coupon-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.coupon-active {
+    border-left-color: #28a745;
+}
+
+.coupon-inactive {
+    border-left-color: #6c757d;
+}
+
+.login-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.app-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-action {
+    margin: 2px;
+}
+
+/* Multiselect styling */
+#couponUserIds {
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+#couponUserIds:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+#couponUserIds option {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+#couponUserIds option:selected {
+    background-color: #0d6efd;
+    color: white;
+}
+
+#couponUserIds option:hover {
+    background-color: #f8f9fa;
+}
+
+/* Header button styling */
+.app-header .btn {
+    margin: 0 5px;
+}
+
+.app-header .btn-group {
+    margin: 0 10px;
+}
+
+/* Make suggestions button specific styling */
+#suggestBtn {
+    margin-right: 15px;
+}
+
+/* Ensure buttons have consistent height */
+.app-header .btn {
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Floating Action Button (FAB) */
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
